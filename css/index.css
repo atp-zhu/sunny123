@@ -154,216 +154,114 @@ font-size: 60px;
   animation: fadeInUp 1.2s ease forwards;
 }
 /* =============================== */
-.box2{
-  display: block; /* 改为块级布局，不使用flex */
+.box2 {
+  display: flex;
+  justify-content: space-between;
   margin-top: 70px;
   /* padding: 0 50px; */
-  position: relative;
-  overflow: visible; /* 确保溢出内容可见 */
-  min-height: 1500px; /* 增加最小高度，确保有足够空间容纳所有内容 */
-  padding-bottom: 50px; /* 增加底部内边距 */
+
 }
-.box2>.left{
+
+.box2>.left {
   width: 600px;
-  /* 这里不设置position:sticky，因为要用JS控制 */
-  transition: transform 0.1s ease;
-  align-self: flex-start;
+  transition: all 0.25s ease-out;
+  /* 更快的过渡效果 */
   will-change: position, top;
-  z-index: 10; /* 确保在右侧内容上方 */
-  position: absolute; /* 使用绝对定位 */
-  left: 0;
-  top: 0;
+  /* 优化性能 */
+  transform: translateZ(0);
+  /* 启用硬件加速 */
+  backface-visibility: hidden;
+  /* 减少抖动 */
 }
-.box2>.left>.title{
-font-size: 40px;
-font-weight: 700;
-width: 475px;
+
+.box2-left-placeholder {
+  transition: none !important;
+  /* 占位元素不需要过渡效果 */
 }
-.box2>.left>.bot{
+
+.box2>.left>.title {
+  font-size: 40px;
+  font-weight: 700;
+  width: 475px;
+}
+
+.box2>.left>.bot {
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   margin-top: 30px;
 }
-.box2>.left>.bot>span{
-padding: 15px;
-border: 1px solid black;
-text-align: center;
-border-radius: 70px;
-margin-bottom: 20px;
+
+.box2>.left>.bot>span {
+  padding: 15px;
+  border: 1px solid black;
+  text-align: center;
+  border-radius: 70px;
+  margin-bottom: 20px;
 }
-.box2>.left>.bot>.sig{
+
+.box2>.left>.bot>.sig {
   /* width: 100px; */
   padding: 10px 50px 10px 0;
   line-height: 30px;
 }
+
 .box2>.left>.bot>.adv {
   width: 230px;
 }
+
 .box2>.left>.bot>.wel {
   width: 110px;
 }
-.box2>.right{
+
+.box2>.right {
   width: 1100px;
-  flex: none; /* 不使用flex */
-  border: 5px solid black;
-  transition: none;
-  position: absolute; /* 使用绝对定位 */
-  left: 630px; /* 左侧区域宽度 + 间距 */
-  top: 0;
-  margin-left: 0; /* 清除边距 */
-}
-/* 修改对右侧第一张图片的样式支持 */
-.box2 > .right > .img1 {
-  position: relative; /* 为了支持JS中的fixed定位 */
-  z-index: 9; /* 低于左侧区域 */
-  will-change: position, top;
-  width: 100%;
-  height: auto;
-  display: block;
+  flex: 1;
+  /* border: 5px solid rgb(167, 48, 48); */
 }
 
-.box2 > .right > .img1.fixed {
-  position: fixed;
-  top: 80px;
-  transition: opacity 0.3s ease; /* 添加透明度过渡效果 */
-}
-
-.box2 > .right > .img1 > img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-/* 修改第二张图片样式，使其可以从第一张图片上方滚过 */
-.box2 > .right > .img2 {
-  position: relative;
-  margin-top: 700px; /* 设置与第一张图片高度相近的间距，确保只有滚动到第一张图片底部才开始覆盖 */
-  z-index: 10; /* 比第一张图片的z-index高，确保能覆盖 */
-  will-change: transform, position, top;
-  transition: transform 0.3s ease;
-}
-
-/* 添加第二张图片固定时的样式 */
-.box2 > .right > .img2.fixed {
-  position: fixed;
-  top: 80px;
-  transition: opacity 0.3s ease;
-}
-
-/* 添加第三张图片固定时的样式 */
-.box2 > .right > .img3.fixed {
-  position: fixed;
-  top: 80px;
-  transition: opacity 0.3s ease;
-  z-index: 11; /* 比第二张图片高，确保能覆盖 */
-}
-
-/* 添加覆盖时的效果，但移除阴影 */
-.box2 > .right > .img2.overlapping {
-  transform: translateY(-10px); /* 仅保留轻微上移效果，移除放大效果 */
-  transition: transform 0.5s ease-out; /* 增加过渡时间和平滑度 */
-}
-
-/* 添加第三张图片覆盖效果 */
-.box2 > .right > .img3.overlapping {
-  transform: translateY(-10px); /* 仅保留轻微上移效果，不添加放大效果 */
-  transition: transform 0.5s ease-out; /* 增加过渡时间和平滑度 */
-}
-
-/* 当第一张图片被覆盖时的效果 */
-.box2 > .right > .img1.being-overlapped {
-  opacity: 0.9; /* 轻微降低透明度 */
-  transition: opacity 0.5s ease; /* 增加过渡时间和平滑度 */
-}
-
-/* 当第二张图片被覆盖时的效果 */
-.box2 > .right > .img2.being-overlapped {
-  opacity: 0.9; /* 轻微降低透明度 */
-  transition: opacity 0.5s ease; /* 增加过渡时间和平滑度 */
-}
-
-/* 确保第三张图片紧跟第二张图片 */
-.box2 > .right > .img2 + .img3 {
-  margin-top: 700px; /* 设置与第二张图片高度相近的间距，确保只有滚动到第二张图片底部才开始覆盖 */
-  position: relative;
-  z-index: 11; /* 比第二张图片高，确保能覆盖 */
-  will-change: transform, position, top;
-  transition: transform 0.3s ease;
-}
-
-/* 调整img2和img3使其正确显示 */
-.box2 > .right > .img2 img,
-.box2 > .right > .img3 img {
-  width: 100%;
-  height: auto;
-  display: block;
-  transition: transform 0.3s ease;
-}
-
-/* 添加占位空间，防止结构塌陷 */
-.box2 > .right::after {
-  content: '';
-  display: block;
-  height: 900px; /* 增加高度以容纳所有图片 */
-  width: 100%;
-  pointer-events: none;
-  position: relative;
-  z-index: 1;
-}
-
-/* 添加图片悬停效果增强交互 */
-.box2 > .right > .img2:hover img,
-.box2 > .right > .img3:hover img {
-  transform: scale(1.02);
-}
-/* .box2>.right>.img1{
+.box2>.right img {
   width: 1100px;
   height: 700px;
   margin-bottom: 10px;
-}
-.box2>.right>.img2 {
-  width: 1100px;
-  height: 700px;
-  margin-bottom: 10px;
-}
-.box2>.right>.img3 {
-  width: 600px;
-  height: 700px;
-  margin-bottom: 10px;
-} */
-.box2>.right img{
-    width: 1100px;
-      height: 700px;
-      margin-bottom: 10px;
-  /* width: 100%; */
-  /* height: 800px; */
-  /* display: block; */
-  /* 
-  设置行内元素的对齐方式
-  vertical-align: top/middle/bottom/baseline; 
-  */
   vertical-align: bottom;
+  transition: all 0.25s ease-out;
+  /* 添加平滑过渡效果 */
+  will-change: position, top;
+  /* 优化性能 */
+  transform: translateZ(0);
+  /* 启用硬件加速 */
+  backface-visibility: hidden;
+  /* 减少抖动 */
 }
-.box2>.right>.cent1>.bot{
+
+.box2-img-placeholder {
+  transition: none !important;
+  /* 占位元素不需要过渡效果 */
+}
+
+.box2>.right>.cent1>.bot {
   width: 100%;
 }
-.box2>.right>.cent1>.bot>.title{
-font-size: 50px;
-font-weight: 700;
-padding: 10px 0;
+
+.box2>.right>.cent1>.bot>.title {
+  font-size: 50px;
+  font-weight: 700;
+  padding: 10px 0;
 }
-.box2>.right>.cent1>.bot>.art{
-font-size: 20px;
+
+.box2>.right>.cent1>.bot>.art {
+  font-size: 20px;
 }
-.box2>.right>.cent1>.bot>.more{
+
+.box2>.right>.cent1>.bot>.more {
   width: 160px;
-border: 1px solid black;
-padding: 10px;
-text-align: center;
-margin-top: 30px;
-margin-bottom: 70px;
+  border: 1px solid black;
+  padding: 10px;
+  text-align: center;
+  margin-top: 30px;
+  margin-bottom: 70px;
 }
 /* ================================ */
 .box3{
