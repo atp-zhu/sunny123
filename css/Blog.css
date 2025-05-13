@@ -1,0 +1,119 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  margin: 0 5px;
+  background-color: rgb(244, 243, 241);
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+.nav {
+    height: 50px;
+      line-height: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+    position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+}
+
+.nav>.left {
+  margin-left: 70px;
+  padding-top: 6px;
+}
+
+.nav>.right {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 70px;
+}
+
+.nav>.right>div {
+  margin-right: 30px;
+}
+
+/* ======================== */
+.box1{
+  margin: 0 50px;
+  margin-bottom: 100px;
+}
+.box1>.top{
+font-size: 50px;
+margin: 60px 50px;
+}
+.box1>.bot{
+  display: flex;
+  justify-content: space-between;
+}
+.box1>.bot>.box{
+  width: 31%;
+}
+.box1>.bot>.box>img{
+  width: 100%;}
+.box1>.bot>.box>.text>.tit {
+  font-size: 26px;
+  font-weight: 700;
+  padding: 10px 0;
+}
+
+/* =============================== */
+.box5 {
+padding: 100px 50px;
+  background-color: white;
+}
+
+.box5>.top {
+  display: flex;
+  justify-content: space-between;
+  margin-right: 100px;
+  margin-bottom: 60px;
+}
+
+.box5>.top>.box>.title {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.box5>.top>.box>.cont {
+  font-size: 18px;
+  margin-top: 20px;
+}
+
+.box5>.bot {
+  display: flex;
+  justify-content: space-between;
+}
+
+.box5>.bot>.left>div {
+  font-size: 18px;
+  margin-bottom: 30px;
+}
+
+.box5>.bot>.left>div:nth-child(2)>span {
+  margin-right: 20px;
+  margin-top: 30px;
+  width: 30px;
+  height: 30px;
+
+}
+
+.box5>.bot>.right {
+  display: flex;
+}
+
+.box5>.bot>.right>img {
+  width: 24px;
+  height: 24px;
+  margin-left: 20px;
+  font-size: 20px;
+}

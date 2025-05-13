@@ -1,0 +1,788 @@
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+html, body {
+  width: 100%;
+  overflow-x: hidden;
+}
+.banner{
+  width: 100%;
+  max-width: 1850px;
+  margin: 0 auto;
+  background-color: rgb(244, 243,241);
+  position: relative; /* 添加相对定位 */
+  overflow: hidden; /* 控制溢出 */
+}
+body{
+  background-color: rgb(244, 243, 241);
+  padding-top: 50px;
+  margin: 0;
+  overflow-x: hidden; /* 防止横向滚动条 */
+  width: 100%;
+}
+a{
+  text-decoration: none;
+  color: black;
+}
+.nav{
+  height: 50px;
+  line-height: 50px;
+  background-color: white;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+.nav>.ban{
+  width: 100%;
+  max-width: 1850px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 15px;
+  box-sizing: border-box;
+}
+.nav>.ban>.left{
+  margin-left: 70px;
+ padding-top: 6px;
+}
+.nav>.ban>.right{
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 70px;
+}
+.nav>.ban>.right>div{
+  margin-right: 30px;
+}
+/* ======================== */
+/* 添加动画关键帧 */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/* 添加背景图缩放动画 */
+@keyframes zoomBackground {
+  0% {
+    background-size: 100% 100%;
+  }
+  100% {
+    background-size: 110% 110%;
+  }
+}
+.box1{
+  height: 100vh; /* 将高度设为100%视口高度 */
+  width: 100vw; /* 使用100vw确保占据整个视口宽度 */
+  margin-left: calc(-50vw + 50%); /* 使box1与视口对齐 */
+  padding: 0; /* 移除任何内边距 */
+  border-radius: 0; /* 移除圆角 */
+  position: relative;
+  color: white;
+  overflow: hidden; /* 确保内容不溢出 */
+}
+
+.box1 video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* 保持视频比例填充整个容器 */
+  object-position: center; /* 居中显示视频 */
+  z-index: 0;
+}
+
+.box1::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3); /* 黑色半透明蒙版 */
+  z-index: 1; /* 确保蒙版在视频上方，但在内容下方 */
+}
+
+.box1>.center {
+  position: relative;
+  z-index: 2; /* 确保内容显示在视频和蒙版上层 */
+  width: 100%;
+  height: 100%;
+  max-width: 1850px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+.box1>.center>.left{
+position: absolute;
+left: 40px;
+bottom: 110px;
+font-size: 60px;
+  animation: fadeInUp 1.2s ease forwards;
+}
+.box1>.center>.left>.title{
+  font-weight: 700;
+  line-height: 70px;
+  margin-bottom: 30px;
+}
+.box1>.center>.left>.top{
+  font-size: 18px;
+  padding: 20px;
+  width: 100px;
+  border: 2px solid white;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.box1>.center>.right{
+  width: 660px;
+  position: absolute;
+  right: 40px;
+  bottom: 110px;
+  font-size: 20px;
+  animation: fadeInUp 1.2s ease forwards;
+}
+/* =============================== */
+.box2{
+  display: block; /* 改为块级布局，不使用flex */
+  margin-top: 70px;
+  /* padding: 0 50px; */
+  position: relative;
+  overflow: visible; /* 确保溢出内容可见 */
+  min-height: 1500px; /* 增加最小高度，确保有足够空间容纳所有内容 */
+  padding-bottom: 50px; /* 增加底部内边距 */
+}
+.box2>.left{
+  width: 600px;
+  /* 这里不设置position:sticky，因为要用JS控制 */
+  transition: transform 0.1s ease;
+  align-self: flex-start;
+  will-change: position, top;
+  z-index: 10; /* 确保在右侧内容上方 */
+  position: absolute; /* 使用绝对定位 */
+  left: 0;
+  top: 0;
+}
+.box2>.left>.title{
+font-size: 40px;
+font-weight: 700;
+width: 475px;
+}
+.box2>.left>.bot{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-top: 30px;
+}
+.box2>.left>.bot>span{
+padding: 15px;
+border: 1px solid black;
+text-align: center;
+border-radius: 70px;
+margin-bottom: 20px;
+}
+.box2>.left>.bot>.sig{
+  /* width: 100px; */
+  padding: 10px 50px 10px 0;
+  line-height: 30px;
+}
+.box2>.left>.bot>.adv {
+  width: 230px;
+}
+.box2>.left>.bot>.wel {
+  width: 110px;
+}
+.box2>.right{
+  width: 1100px;
+  flex: none; /* 不使用flex */
+  border: 5px solid black;
+  transition: none;
+  position: absolute; /* 使用绝对定位 */
+  left: 630px; /* 左侧区域宽度 + 间距 */
+  top: 0;
+  margin-left: 0; /* 清除边距 */
+}
+/* 修改对右侧第一张图片的样式支持 */
+.box2 > .right > .img1 {
+  position: relative; /* 为了支持JS中的fixed定位 */
+  z-index: 9; /* 低于左侧区域 */
+  will-change: position, top;
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.box2 > .right > .img1.fixed {
+  position: fixed;
+  top: 80px;
+  transition: opacity 0.3s ease; /* 添加透明度过渡效果 */
+}
+
+.box2 > .right > .img1 > img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* 修改第二张图片样式，使其可以从第一张图片上方滚过 */
+.box2 > .right > .img2 {
+  position: relative;
+  margin-top: 700px; /* 设置与第一张图片高度相近的间距，确保只有滚动到第一张图片底部才开始覆盖 */
+  z-index: 10; /* 比第一张图片的z-index高，确保能覆盖 */
+  will-change: transform, position, top;
+  transition: transform 0.3s ease;
+}
+
+/* 添加第二张图片固定时的样式 */
+.box2 > .right > .img2.fixed {
+  position: fixed;
+  top: 80px;
+  transition: opacity 0.3s ease;
+}
+
+/* 添加第三张图片固定时的样式 */
+.box2 > .right > .img3.fixed {
+  position: fixed;
+  top: 80px;
+  transition: opacity 0.3s ease;
+  z-index: 11; /* 比第二张图片高，确保能覆盖 */
+}
+
+/* 添加覆盖时的效果，但移除阴影 */
+.box2 > .right > .img2.overlapping {
+  transform: translateY(-10px); /* 仅保留轻微上移效果，移除放大效果 */
+  transition: transform 0.5s ease-out; /* 增加过渡时间和平滑度 */
+}
+
+/* 添加第三张图片覆盖效果 */
+.box2 > .right > .img3.overlapping {
+  transform: translateY(-10px); /* 仅保留轻微上移效果，不添加放大效果 */
+  transition: transform 0.5s ease-out; /* 增加过渡时间和平滑度 */
+}
+
+/* 当第一张图片被覆盖时的效果 */
+.box2 > .right > .img1.being-overlapped {
+  opacity: 0.9; /* 轻微降低透明度 */
+  transition: opacity 0.5s ease; /* 增加过渡时间和平滑度 */
+}
+
+/* 当第二张图片被覆盖时的效果 */
+.box2 > .right > .img2.being-overlapped {
+  opacity: 0.9; /* 轻微降低透明度 */
+  transition: opacity 0.5s ease; /* 增加过渡时间和平滑度 */
+}
+
+/* 确保第三张图片紧跟第二张图片 */
+.box2 > .right > .img2 + .img3 {
+  margin-top: 700px; /* 设置与第二张图片高度相近的间距，确保只有滚动到第二张图片底部才开始覆盖 */
+  position: relative;
+  z-index: 11; /* 比第二张图片高，确保能覆盖 */
+  will-change: transform, position, top;
+  transition: transform 0.3s ease;
+}
+
+/* 调整img2和img3使其正确显示 */
+.box2 > .right > .img2 img,
+.box2 > .right > .img3 img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+/* 添加占位空间，防止结构塌陷 */
+.box2 > .right::after {
+  content: '';
+  display: block;
+  height: 900px; /* 增加高度以容纳所有图片 */
+  width: 100%;
+  pointer-events: none;
+  position: relative;
+  z-index: 1;
+}
+
+/* 添加图片悬停效果增强交互 */
+.box2 > .right > .img2:hover img,
+.box2 > .right > .img3:hover img {
+  transform: scale(1.02);
+}
+/* .box2>.right>.img1{
+  width: 1100px;
+  height: 700px;
+  margin-bottom: 10px;
+}
+.box2>.right>.img2 {
+  width: 1100px;
+  height: 700px;
+  margin-bottom: 10px;
+}
+.box2>.right>.img3 {
+  width: 600px;
+  height: 700px;
+  margin-bottom: 10px;
+} */
+.box2>.right img{
+    width: 1100px;
+      height: 700px;
+      margin-bottom: 10px;
+  /* width: 100%; */
+  /* height: 800px; */
+  /* display: block; */
+  /* 
+  设置行内元素的对齐方式
+  vertical-align: top/middle/bottom/baseline; 
+  */
+  vertical-align: bottom;
+}
+.box2>.right>.cent1>.bot{
+  width: 100%;
+}
+.box2>.right>.cent1>.bot>.title{
+font-size: 50px;
+font-weight: 700;
+padding: 10px 0;
+}
+.box2>.right>.cent1>.bot>.art{
+font-size: 20px;
+}
+.box2>.right>.cent1>.bot>.more{
+  width: 160px;
+border: 1px solid black;
+padding: 10px;
+text-align: center;
+margin-top: 30px;
+margin-bottom: 70px;
+}
+/* ================================ */
+.box3{
+  font-size: 45px;
+  font-weight: 700;
+  padding: 30px 0px;
+  position: relative;
+  overflow: hidden;
+}
+.box3>.bot{
+  display: flex;
+  justify-content: start;
+  margin-top: 40px;
+  width: max-content;
+  animation: carousel 30s linear infinite;
+}
+
+@keyframes carousel {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.box3>.bot>.img {
+  display: flex;
+  justify-content: start;
+}
+.box3>.bot>.img>.img1{
+  width: 400px;
+  height: 600px;
+  margin-right: 50px;
+}
+.box3>.bot>.img>.img1>img {
+  width: 400px;
+  height: 600px;
+  margin-right: 50px;
+}
+.box3>.bot>.img>.img2 {
+  width: 480px;
+  height: 320px;
+  background-color: skyblue;
+  margin-right: 50px;
+}
+.box3>.bot>.img>.img2>img {
+  width: 480px;
+  height: 320px;
+}
+/* =================================== */
+.box4{
+  width: 100vw;
+  /* height: 100vh; */
+  margin-left: calc(-50vw + 50%);
+  left: 50%;
+}
+.box4>.box{
+  position: relative;
+}
+.box4>.box>img{
+  width: 100%;
+  height: 100%;
+}
+.box4>.box>.cent{
+  width: 600px;
+  height: 400px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -300px;
+  margin-top: -200px;
+}
+.box4>.box>.cent>.title {
+  color: white;
+  font-size: 50px;
+  font-weight: 700;
+text-align: center;
+}
+.box4>.box>.cent>.cont{
+  color: white;
+  text-align: center;
+  font-size: 20px;
+  margin-top: 20px;
+}
+.box4>.box>.cent>.bot {
+  text-align: left;
+  margin-top: 30px;
+  margin-left: 20px;
+}
+.box4>.box>.cent>.bot>input {
+  width: 370px;
+  height: 40px;
+  padding: 10px;
+  font-size: 20px;
+  background-color: rgba(255, 255, 255, 0.2);
+  border: 1px solid white;
+}
+.box4>.box>.cent>.bot>input::placeholder {
+color: white;
+}
+.box4>.box>.cent>.bot>button {
+  width: 120px;
+  height: 62px;
+  padding: 10px;
+  background-color: white;
+border: 1px solid white;
+}
+/* ==================================== */
+.box5{
+padding: 100px 0px;
+      background-color: white;
+}
+.box5>.top{
+display: flex;
+justify-content: space-between;
+/* margin-right: 100px; */
+padding: 0 100px;
+width: 1850px;
+margin: 0 auto;
+    
+}
+
+.box5>.top>.box>.title {
+font-size: 20px;
+font-weight: 700;
+}
+.box5>.top>.box>.cont {
+  font-size: 18px;
+  margin-top: 20px;
+}
+.box5>.bot{
+  display: flex;
+  justify-content: space-between;
+    width: 1850px;
+      margin: 100px auto;
+      padding:0 100px;
+}
+.box5>.bot>.left>div{
+font-size: 18px;
+margin-bottom: 30px;
+}
+.box5>.bot>.left>div:nth-child(2)>span{
+  margin-right: 20px;
+  margin-top: 30px;
+  width: 30px;
+  height: 30px;
+ 
+}
+.box5>.bot>.right{
+  display: flex;
+}
+.box5>.bot>.right>img {
+  width: 24px;
+  height: 24px;
+  margin-left: 20px;
+  font-size: 20px;
+}
+/* ======================================== */
+.box6{
+  /* padding: 0 50px; */
+  background-color: rgb(244,243,241);
+}
+.box6>.title{
+font-size: 40px;
+font-weight: 700;
+width: 750px;
+margin: 50px 0;
+}
+.box6>.imgbox{
+  display: flex ;
+  justify-content: space-between;
+}
+.box6>.imgbox>.imgitem {
+  position: relative;
+  overflow: hidden;
+  width: 32.5%;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.box6>.imgbox>.imgitem::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.box6>.imgbox>.imgitem:hover>.potbox{
+  bottom: 50px;
+  transition: bottom 0.5s;
+}
+
+.box6>.imgbox>.imgitem>img {
+  width: 100%;
+  position: relative;
+  transition: transform 0.3s ease;
+}
+
+.box6>.imgbox>.imgitem>img:hover {
+  transform: scale(1.05);
+}
+
+.box6>.imgbox>.imgitem>.potbox{
+  width: 350px;
+  position: absolute;
+  left: 50%;
+  margin-left: -175px;
+  bottom: -50px;
+  z-index: 2;
+}
+.box6>.imgbox>.imgitem>.potbox>.tit{
+  font-size: 30px;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 30px;
+}
+.box6>.imgbox>.imgitem>.potbox>.exp{
+  width: 100px;
+  height: 50px;
+  border: 1px solid white;
+  text-align: center;
+  line-height: 50px;
+  color: white;
+  font-weight: 700;
+  margin: 0 auto;
+}
+/* ======================================== */
+.box7{
+  padding: 100px 0px;
+  display: flex;
+  justify-content: space-between;
+}
+.box7>.left{
+  width: 1120px;
+  height: 740px;
+  margin-right: 100px;
+  overflow: hidden;
+}
+.box7>.left>img{
+  width: 100%;
+  height: 100%;
+  transition: transform 0.3s ease;
+}
+.box7>.left>img:hover {
+  transform: scale(1.05);
+  cursor: pointer;
+}
+.box7>.right{
+  width: 600px;
+  height: 740px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.box7>.right>.mid{
+  opacity: 0;
+  transform: translateY(50px);
+  animation: fadeInUp 1.2s ease forwards;
+}
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.box7>.right>.mid>.title{
+  font-size: 40px;
+  font-weight: 700;
+  margin: 20px 0;
+}
+.box7>.right>.mid>.cent{
+  line-height: 25px;
+}
+.box7>.right>.mid>.exp{
+  width: 100px;
+  margin-top: 20px;
+  padding: 8px;
+  border: 1px solid black;
+}
+/* ======================================== */
+.box8 {
+  padding: 100px 0px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.box8>.left {
+  width: 1120px;
+  height: 740px;
+  overflow: hidden;
+}
+
+.box8>.left>img {
+  width: 100%;
+  height: 100%;
+  transition: transform 0.3s ease;
+}
+
+.box8>.left>img:hover {
+  transform: scale(1.05);
+  cursor: pointer;
+}
+
+.box8>.right {
+  width: 600px;
+  height: 740px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.box8>.right>.mid>.title {
+  font-size: 40px;
+  font-weight: 700;
+  margin: 20px 0;
+}
+
+.box8>.right>.mid>.cent {
+  line-height: 25px;
+}
+
+.box8>.right>.mid>.exp {
+  width: 100px;
+  margin-top: 20px;
+  padding: 8px;
+  border: 1px solid black;
+}
+
+/* ======================================== */
+.box9{
+  padding:0 0px;
+  margin-bottom: 100px;
+}
+.box9>.tit{
+  font-size: 40px;
+  font-weight: 700;
+  margin: 100px 0;
+  opacity: 0;
+  transform: translateY(50px);
+  animation: fadeInUp 1.2s ease forwards;
+}
+.box9>.box{
+  display: flex;
+  justify-content: space-between;
+}
+.box9>.box>.boxitem{
+  width: 32.5%;
+  height: 380px;
+  padding: 20px 10px;
+  box-sizing: border-box;
+  background-color: white;
+  transition: box-shadow 0.3s ease;
+}
+
+.box9>.box>.boxitem:hover {
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+}
+
+.box9>.box>.boxitem .iconfont{
+  font-size: 40px;
+}
+
+.box9>.box>.boxitem>.tit {
+  font-size: 30px;
+  font-weight: 700;
+  margin: 20px 0;
+}
+.box9>.box>.boxitem>.text {
+  line-height: 25px;
+}
+.box9>.box>.boxitem>.more {
+  width: 120px;
+  height: 20px;
+  border: 1px solid black;
+  padding: 20px 10px;
+  margin-top: 20px;
+}
+/* ======================== */
+.box10 {
+  margin-bottom:80px;
+}
+
+.box10>.top {
+  font-size: 50px;
+  margin: 60px 50px;
+}
+
+.box10>.bot {
+  display: flex;
+  justify-content: space-between;
+}
+
+.box10>.bot>.box {
+  width: 31%;
+  overflow: hidden;
+}
+
+.box10>.bot>.box>img {
+  width: 100%;
+  transition: transform 0.3s ease;
+}
+
+.box10>.bot>.box>img:hover {
+  transform: scale(1.05);
+  cursor: pointer;
+}
+
+.box10>.bot>.box>.text>.tit {
+  font-size: 26px;
+  font-weight: 700;
+  padding: 10px 0;
+}
